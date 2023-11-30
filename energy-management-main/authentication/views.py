@@ -4,7 +4,11 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from .models import airConditioner, consumer
+<<<<<<< HEAD
 import boto3
+=======
+
+>>>>>>> 5d264b1 (Local development being uploaded)
 
 # Create your views here.
 @csrf_exempt
@@ -65,6 +69,7 @@ def signup_api(request):
             new = consumer(id=email)
             new.save()
             login(request, user)
+<<<<<<< HEAD
             #Sending data to SQS service         
             # session = boto3.session.Session()
             # sqs_client = session.client('sqs')
@@ -75,12 +80,19 @@ def signup_api(request):
             return redirect("/auth/add_ac/")
         except Exception as e:
           #  print (e)
+=======
+            return redirect("/auth/add_ac/")
+        except Exception as e:
+>>>>>>> 5d264b1 (Local development being uploaded)
             return render(
                 request, "signup_page.html", context={"message": "Error"}, status=501
             )
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5d264b1 (Local development being uploaded)
 @login_required(login_url="/auth/login/")
 def logout_api(request):
     logout(request)

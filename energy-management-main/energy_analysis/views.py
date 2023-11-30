@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import psycopg2
 from django.conf import settings
+=======
+>>>>>>> 5d264b1 (Local development being uploaded)
 import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -30,9 +33,15 @@ def dashboard(request):
                 "dailyAvgEnergy": sum(list(map(lambda x: x["energy"], allData)))
                 / len(list(map(lambda x: x["energy"], allData))),
                 "dailyAvgAc": sum(list(map(lambda x: x["ac"], allData)))
+<<<<<<< HEAD
                 / len(list(map(lambda x: x["ac"], allData))),
                 "dailyAvgGas": sum(list(map(lambda x: x["gas"], allData)))
                 / len(list(map(lambda x: x["gas"], allData))),
+=======
+                / len(list(map(lambda x: x["energy"], allData))),
+                "dailyAvgGas": sum(list(map(lambda x: x["gas"], allData)))
+                / len(list(map(lambda x: x["energy"], allData))),
+>>>>>>> 5d264b1 (Local development being uploaded)
                 "weeklyAvgEnergy": sum(
                     list(
                         map(
@@ -96,7 +105,11 @@ def dashboard(request):
                 "weeklyAvgGas": sum(
                     list(
                         map(
+<<<<<<< HEAD
                             lambda x: x["gas"],
+=======
+                            lambda x: x["ac"],
+>>>>>>> 5d264b1 (Local development being uploaded)
                             list(
                                 filter(
                                     lambda x: x["date"]
@@ -111,7 +124,11 @@ def dashboard(request):
                 / len(
                     list(
                         map(
+<<<<<<< HEAD
                             lambda x: x["gas"],
+=======
+                            lambda x: x["ac"],
+>>>>>>> 5d264b1 (Local development being uploaded)
                             list(
                                 filter(
                                     lambda x: x["date"]
@@ -179,6 +196,7 @@ def dashboard(request):
 @login_required(login_url="/auth/login/")
 def profile(request):
     if request.method == "GET":
+<<<<<<< HEAD
         user_id = request.user.id
         user = authModels.consumer.objects.get(id=request.user)
         db_parameters = settings.DATABASES['default']
@@ -194,6 +212,8 @@ def profile(request):
         cursor.close()
         connection.close()
         print(result)
+=======
+>>>>>>> 5d264b1 (Local development being uploaded)
         history = list(
             map(
                 lambda x: {
@@ -202,10 +222,17 @@ def profile(request):
                     "gas": x.totalGas,
                     "ac": x.totalAc,
                 },
+<<<<<<< HEAD
                 dailyHistory.objects.filter(user__id=request.user).order_by("date")
             )
         )
         
+=======
+                dailyHistory.objects.filter(user__id=request.user).order_by("date"),
+            )
+        )
+        user = authModels.consumer.objects.get(id=request.user)
+>>>>>>> 5d264b1 (Local development being uploaded)
         username = user.name if user.name != None else "change username"
         return render(
             request,
@@ -279,7 +306,11 @@ def form_submit(request):
 
         newEnergy = electricityUnits(date=date, units=energy, user=consumerObj)
         newEnergy.save()
+<<<<<<< HEAD
 #lamdba
+=======
+
+>>>>>>> 5d264b1 (Local development being uploaded)
         newHistory = dailyHistory(
             date=date,
             user=consumerObj,

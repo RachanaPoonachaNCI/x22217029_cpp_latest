@@ -10,7 +10,7 @@ def create_rds_instance(secretPassword):
     allocated_storage = 20
     security_group_ids = ['sg-0bb984aa38bedeac2']
 
-
+#rds boto3 client
     rds = boto3.client('rds')
 
     # Retrieving the master password from AWS Secrets Manager
